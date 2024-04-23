@@ -20,6 +20,7 @@ database = {
 database = {str(id): value for id, value in database.items()}
 
 def personDB_search(*args, **database):
+    matching_ids = []
     for person_id, person_data in database.items():
         if len(args) != len(person_data):
             continue
@@ -34,5 +35,5 @@ def personDB_search(*args, **database):
                 match = False
                 break
         if match:
-            return person_id
-    return None
+            matching_ids.append(person_id)
+    return matching_ids if matching_ids else None

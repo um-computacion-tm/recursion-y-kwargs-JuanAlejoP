@@ -27,26 +27,26 @@ class TestPersonDBSearch(unittest.TestCase):
         }
 
     def test_personFound(self):
-        self.assertEqual(personDB_search('Pablo', 'Diego', 'Ruiz', 'Picasso', **self.database), '1')
-        self.assertEqual(personDB_search('Elio', 'Anci', **self.database), '2')
-        self.assertEqual(personDB_search('Elias', 'Marcos', 'Luciano', 'Marcelo', 'Gonzalez', **self.database), '3')
+        self.assertEqual(personDB_search('Pablo', 'Diego', 'Ruiz', 'Picasso', **self.database), ['1'])
+        self.assertEqual(personDB_search('Elio', 'Anci', **self.database), ['2'])
+        self.assertEqual(personDB_search('Elias', 'Marcos', 'Luciano', 'Marcelo', 'Gonzalez', **self.database), ['3'])
 
     def test_unordered_info(self):
-        self.assertEqual(personDB_search('Diego', 'Picasso', 'Ruiz', 'Pablo', **self.database), '1')
-        self.assertEqual(personDB_search('Anci', 'Elio', **self.database), '2')
-        self.assertEqual(personDB_search('Elias', 'Marcelo', 'Marcos', 'Gonzalez', 'Luciano', **self.database), '3')
+        self.assertEqual(personDB_search('Diego', 'Picasso', 'Ruiz', 'Pablo', **self.database), ['1'])
+        self.assertEqual(personDB_search('Anci', 'Elio', **self.database), ['2'])
+        self.assertEqual(personDB_search('Elias', 'Marcelo', 'Marcos', 'Gonzalez', 'Luciano', **self.database), ['3'])
 
     def test_compoundNames(self):
         self.assertEqual(personDB_search('María', 'José', 'García', 'López', **self.database), None)
         dynamic_database = self.database.copy()
         dynamic_database['4'] = {'nombre1': 'María', 'nombre2': 'José', 'apellido1': 'García López'}
-        self.assertEqual(personDB_search('María', 'José', 'García', 'López', **dynamic_database), '4')
+        self.assertEqual(personDB_search('María', 'José', 'García López', **dynamic_database), ['4'])
 
     def test_sameNames(self):
-        self.assertEqual(personDB_search('Pablo', 'Diego', 'Ruiz', 'Picasso', **self.database), '1')
+        self.assertEqual(personDB_search('Pablo', 'Diego', 'Ruiz', 'Picasso', **self.database), ['1'])
         dynamic_database = self.database.copy()
         dynamic_database['5'] = {'nombre1': 'Pablo', 'nombre2': 'Diego', 'apellido1': 'Ruiz', 'apellido2': 'Picasso'}
-        self.assertEqual(personDB_search('Pablo', 'Diego', 'Ruiz', 'Picasso', **dynamic_database), '5')
+        self.assertEqual(personDB_search('Pablo', 'Diego', 'Ruiz', 'Picasso', **dynamic_database), ['1', '5'])
 
     def test_personNotFound(self):
         self.assertIsNone(personDB_search('Rubén', 'Carolini', **self.database))
@@ -70,6 +70,3 @@ class TestPersonDBSearch(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-
-#Corregir función personDB_search para pasar tests compoundNames y sameNames, que actualmente fallan.
