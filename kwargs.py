@@ -3,26 +3,20 @@ def write_name(*args, **kwargs):
     for arg in args:
         print(arg)
     for key, value in kwargs.items():
-        print('key', key, 'value', value)
+        print(key, value)
 
-write_name('Ludmila', first_name = 'Luciano',
-    second_name = 'Cristian',
-    first_lastname = 'Toneatti',
-    second_lastname ='Gandolfo'
-    )
-write_name(
-    first_name = 'Nehuen',
-    first_lastname = 'Donoso',
-    second_lastname = 'Marquez'
-    )
-write_name(
-    'Facundo', 'Emiliano',
-    first_name = 'Celina',
-    second_name =  'Anahi',
-    first_lastname = 'Guerra Diaz'
-    )
-write_name(
-    'Raul', 'Uva', 'Antonio', 'Pepe', 'Yolanda', 'Negra',
-    first_name = 'Eusebio',
-    first_lastname =  'Quinteros'
-    )
+write_name("Ludmila", primer_nombre="Luciano",
+                   segundo_nombre="Cristian",
+                   primer_apellido="Toneatti",
+                   segundo_apellido="Gandolfo")
+
+write_name(primer_nombre="Nehuen",
+                   primer_apellido="Donozo",
+                   segundo_apellido="Marquez")
+
+write_name("Francisco", "Facundo", "Emiliano", primer_nombre="Celina",
+                   segundo_nombre="Anahi",
+                   primer_apellido="Guerra Diaz")
+
+write_name("Raul", "Uva", "Antonio", "Pepe", "Yolanda", "Negra", primer_nombre="Eusebio",
+                   primer_apellido="Quinteros")
