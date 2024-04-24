@@ -68,5 +68,4 @@ class TestPersonDBSearch(unittest.TestCase):
         self.assertIsNone(personDB_search('Pablo', 123, **self.database))
         self.assertIsNone(personDB_search(123, **self.database))
 
-if __name__ == '__main__':
-    unittest.main()
+unittest.main()
