@@ -9,15 +9,17 @@ def sum_while(value):
     return result
 
 def sum_recursive(value):
-    #Condición de corte
-    if value == 1:
-        return 1
-    #Proceso recursivo
-    return value + sum_recursive(value -1)
+    # Condición de corte
+    if value == 0:
+        return 0
+    # Proceso recursivo
+    return value + sum_recursive(value - 1)
 
 # En la recursividad, la condición de corte se coloca siempre al inicio.
 
 def factorial_while(value):
+    if value == 0:
+        return 1
     result = value
     while value > 2:
         result = result * (value - 1)
